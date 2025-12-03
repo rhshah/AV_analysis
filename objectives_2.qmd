@@ -59,6 +59,7 @@ if (knitr::is_html_output()) {
   p
 }
 ```
+
 ```{r}
 #| label: tab-reg
 #| echo: false
@@ -134,6 +135,7 @@ if (knitr::is_html_output()) {
   p_blame
 }
 ```
+
 ```{r}
 #| label: tab-reg-blame
 #| echo: false
