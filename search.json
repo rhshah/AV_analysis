@@ -110,11 +110,31 @@
     ]
   },
   {
+    "objectID": "objectives_1.html#tech-savviness-and-wtp",
+    "href": "objectives_1.html#tech-savviness-and-wtp",
+    "title": "\n2  Objective 1: Strategy for Scaling\n",
+    "section": "\n2.2 Tech Savviness and WTP",
+    "text": "2.2 Tech Savviness and WTP\nQuestion: How do consumers’ WTP for rides driven autonomously vary by their own tech savviness?\n\n\n\n\n\n\n\nFigure 2.2: WTP by Tech Savviness Level\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTech Confidence\nN\n\nCompletely confident\nN = 13\n\nNot confident at all\nN = 40\n\nNot very confident\nN = 103\n\nSomewhat confident\nN = 196\n\nVery confident\nN = 91\n\np-value1\n\n\n\nWTP ($), Mean (SD)\n443\n11.38 (5.85)\n2.10 (4.69)\n6.67 (7.03)\n9.29 (6.85)\n11.40 (7.21)\n&lt;0.001\n\n\n\n1 One-way analysis of means\n\n\n\n\n\nAnalysis: A significant ANOVA here indicates that tech-savvy consumers are more willing to pay for AV rides. This suggests targeted marketing and early adoption strategies should focus on this demographic to build initial traction.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
+    ]
+  },
+  {
+    "objectID": "objectives_1.html#demographic-analysis-gender",
+    "href": "objectives_1.html#demographic-analysis-gender",
+    "title": "\n2  Objective 1: Strategy for Scaling\n",
+    "section": "\n2.3 Demographic Analysis: Gender",
+    "text": "2.3 Demographic Analysis: Gender\nQuestion: How does WTP vary by Gender?\n\n\n\n\n\n\n\nFigure 2.3: WTP for Private AV by Gender\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nFemale\nN = 240\n\nMale\nN = 202\n\np-value1\n\n\n\nWTP ($), Mean (SD)\n8 (7)\n9 (7)\n0.17\n\n\n\n1 Wilcoxon rank sum test\n\n\n\n\n\nAnalysis: There is no significant difference in WTP by gender, indicating that pricing strategies do not need to be gender-specific. This suggests a uniform pricing approach across genders is appropriate.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
+    ]
+  },
+  {
     "objectID": "objectives_1.html#private-vs.-shared-dynamics",
     "href": "objectives_1.html#private-vs.-shared-dynamics",
     "title": "\n2  Objective 1: Strategy for Scaling\n",
-    "section": "\n2.2 Private vs. Shared Dynamics",
-    "text": "2.2 Private vs. Shared Dynamics\nQuestion: How does the WTP degradation compare when moving from Private to Shared?\n\n\n\n\n\n\n\nFigure 2.2: WTP Comparison: Shared Human vs. Shared Autonomous Vehicles\n\n\n\n\n\n\n\n\n\n\nPaired T-Test: Shared Human vs. AV\n\n\nMean Diff\nt-statistic\nP-Value\n95% CI Lower\n95% CI Upper\n\n\n\n−12.28\n−44.77\n0.000\n−12.82\n−11.74\n\n\n\n\n\nAnalysis: Comparing the WTP drop from Private to Shared for both Human and AV modes reveals insights into consumer preferences for ride-sharing in the context of autonomous technology. Here we see if the shared model further depresses WTP significantly.",
+    "section": "\n2.4 Private vs. Shared Dynamics",
+    "text": "2.4 Private vs. Shared Dynamics\nQuestion: How does the WTP degradation compare when moving from Private to Shared?\n\n\n\n\n\n\n\nFigure 2.4: WTP Comparison: Shared Human vs. Shared Autonomous Vehicles\n\n\n\n\n\n\n\n\n\n\nPaired T-Test: Shared Human vs. AV\n\n\nMean Diff\nt-statistic\nP-Value\n95% CI Lower\n95% CI Upper\n\n\n\n−12.28\n−44.77\n0.000\n−12.82\n−11.74\n\n\n\n\n\nAnalysis: Comparing the WTP drop from Private to Shared for both Human and AV modes reveals insights into consumer preferences for ride-sharing in the context of autonomous technology. Here we see if the shared model further depresses WTP significantly.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
     ]
@@ -123,8 +143,8 @@
     "objectID": "objectives_1.html#the-trust-premium-safety",
     "href": "objectives_1.html#the-trust-premium-safety",
     "title": "\n2  Objective 1: Strategy for Scaling\n",
-    "section": "\n2.3 The Trust Premium (Safety)",
-    "text": "2.3 The Trust Premium (Safety)\nQuestion: Can we charge more if consumers trust the safety technology?\n\n\n\n\n\n\n\nFigure 2.3: WTP by Safety Confidence Level\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariable\nN\n\nCompletely confident\nN = 8\n\nNot confident at all\nN = 46\n\nNot very confident\nN = 115\n\nSomewhat confident\nN = 192\n\nVery confident\nN = 82\n\np-value1\n\n\n\nWTP for Private AV ($), Mean (SD)\n443\n12.25 (9.81)\n3.22 (6.36)\n6.51 (6.73)\n9.43 (6.53)\n11.84 (7.36)\n&lt;0.001\n\n\n\n1 One-way analysis of means\n\n\n\n\n\nAnalysis: A significant ANOVA suggests that marketing spend on safety demonstration is directly convertible to higher fares. Here we assess if higher confidence in safety correlates with increased WTP for AV rides. In general, higher confidence should lead to higher WTP. Thus, safety trust-building is a key scaling lever.",
+    "section": "\n2.5 The Trust Premium (Safety)",
+    "text": "2.5 The Trust Premium (Safety)\nQuestion: Can we charge more if consumers trust the safety technology?\n\n\n\n\n\n\n\nFigure 2.5: WTP by Safety Confidence Level\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariable\nN\n\nCompletely confident\nN = 8\n\nNot confident at all\nN = 46\n\nNot very confident\nN = 115\n\nSomewhat confident\nN = 192\n\nVery confident\nN = 82\n\np-value1\n\n\n\nWTP for Private AV ($), Mean (SD)\n443\n12.25 (9.81)\n3.22 (6.36)\n6.51 (6.73)\n9.43 (6.53)\n11.84 (7.36)\n&lt;0.001\n\n\n\n1 One-way analysis of means\n\n\n\n\n\nAnalysis: A significant ANOVA suggests that marketing spend on safety demonstration is directly convertible to higher fares. Here we assess if higher confidence in safety correlates with increased WTP for AV rides. In general, higher confidence should lead to higher WTP. Thus, safety trust-building is a key scaling lever.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
     ]
@@ -133,8 +153,38 @@
     "objectID": "objectives_1.html#the-ethics-premium",
     "href": "objectives_1.html#the-ethics-premium",
     "title": "\n2  Objective 1: Strategy for Scaling\n",
-    "section": "\n2.4 The Ethics Premium",
-    "text": "2.4 The Ethics Premium\nQuestion: Does trust in ethical algorithms drive value as much as physical safety?\n\n\n\n\n\n\n\nFigure 2.4: WTP by Ethical Confidence Level\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariable\nN\n\nCompletely confident\nN = 9\n\nNot confident at all\nN = 93\n\nNot very confident\nN = 165\n\nSomewhat confident\nN = 126\n\nVery confident\nN = 50\n\np-value1\n\n\n\nWTP for Private AV ($), Mean (SD)\n443\n13.67 (9.55)\n5.09 (6.87)\n7.65 (5.81)\n10.56 (7.60)\n11.76 (7.50)\n&lt;0.001\n\n\n\n1 One-way analysis of means\n\n\n\n\n\nAnalysis: If the ANOVA for ethical confidence is significant but with a lower F-value than safety, it indicates that while ethics matter, safety is the primary trust driver for WTP. Thus, ethical assurances are secondary to physical safety in scaling strategy.",
+    "section": "\n2.6 The Ethics Premium",
+    "text": "2.6 The Ethics Premium\nQuestion: Does trust in ethical algorithms drive value as much as physical safety?\n\n\n\n\n\n\n\nFigure 2.6: WTP by Ethical Confidence Level\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariable\nN\n\nCompletely confident\nN = 9\n\nNot confident at all\nN = 93\n\nNot very confident\nN = 165\n\nSomewhat confident\nN = 126\n\nVery confident\nN = 50\n\np-value1\n\n\n\nWTP for Private AV ($), Mean (SD)\n443\n13.67 (9.55)\n5.09 (6.87)\n7.65 (5.81)\n10.56 (7.60)\n11.76 (7.50)\n&lt;0.001\n\n\n\n1 One-way analysis of means\n\n\n\n\n\nAnalysis: If the ANOVA for ethical confidence is significant but with a lower F-value than safety, it indicates that while ethics matter, safety is the primary trust driver for WTP. Thus, ethical assurances are secondary to physical safety in scaling strategy, but here we quantify that impact and see that ethics still plays a role.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
+    ]
+  },
+  {
+    "objectID": "objectives_1.html#confidence-wtp-safety-vs.-ethics",
+    "href": "objectives_1.html#confidence-wtp-safety-vs.-ethics",
+    "title": "\n2  Objective 1: Strategy for Scaling\n",
+    "section": "\n2.7 Confidence & WTP: Safety vs. Ethics",
+    "text": "2.7 Confidence & WTP: Safety vs. Ethics\nQuestion: How do consumers’ WTP change with their confidence in the capacity of AV to keep them safe? And how does it change with their confidence in AV to make the right choice in ethical dilemmas?\n\n\n\n\n\n\n\nFigure 2.7: WTP by Saftey and Ethics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nSafety Confidence\n\n\nEthical Confidence\n\n\n\n\nCompletely confident\nN = 8\n\nNot confident at all\nN = 46\n\nNot very confident\nN = 115\n\nSomewhat confident\nN = 192\n\nVery confident\nN = 82\n\np-value1\n\n\nCompletely confident\nN = 9\n\nNot confident at all\nN = 93\n\nNot very confident\nN = 165\n\nSomewhat confident\nN = 126\n\nVery confident\nN = 50\n\np-value1\n\n\n\n\n\nWTP (Safety Sort), Median (IQR)\n10 (5 – 18)\n0 (0 – 3)\n5 (0 – 10)\n9 (5 – 12)\n10 (6 – 15)\n&lt;0.001\n\n\n\n\n\n\n\n\nWTP (Ethics Sort)\n\n\n\n\n\n\n10 (6 – 22)\n1 (0 – 8)\n7 (4 – 10)\n9 (5 – 14)\n10 (5 – 17)\n&lt;0.001\n\n\n\n\n1 Kruskal-Wallis rank sum test\n\n\n\n\n\nAnalysis: This side-by-side comparison highlights which dimension of trust (safety vs. ethics) has a stronger influence on WTP. The results can guide prioritization in trust-building efforts. It appears both have significant effects, but safety likely has a stronger impact.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
+    ]
+  },
+  {
+    "objectID": "objectives_1.html#company-preference-leaders",
+    "href": "objectives_1.html#company-preference-leaders",
+    "title": "\n2  Objective 1: Strategy for Scaling\n",
+    "section": "\n2.8 Company Preference Leaders",
+    "text": "2.8 Company Preference Leaders\nQuestion: Which companies do consumers prefer to be the leaders in the AV industry?\nWe analyze the ranking data where consumers ranked 7 companies from 1 (Most Preferred) to 7 (Least Preferred). Lower values indicate higher preference.\n\n\n\n\n\n\nAnalysis: The ranking data provides insights into which companies are perceived as leaders in AV technology. Companies that rank higher may have a competitive advantage in consumer trust, which can be leveraged in marketing and partnership strategies. Here based on Average preference rank, we can identify which companies are leading in consumer trust and preference. Here company 1 appears to be the leader.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
+    ]
+  },
+  {
+    "objectID": "objectives_1.html#impact-of-tech-savviness-on-company-preference",
+    "href": "objectives_1.html#impact-of-tech-savviness-on-company-preference",
+    "title": "\n2  Objective 1: Strategy for Scaling\n",
+    "section": "\n2.9 Impact of Tech Savviness on Company Preference",
+    "text": "2.9 Impact of Tech Savviness on Company Preference\nQuestion: How do consumers’ preferences change if they are very tech savvy vs. not very tech savvy?\n\n\n\n\n\n\n\nFigure 2.8: Company Preference by Tech Savviness\n\n\n\n\n\n\n\n\nTable: Association between Tech Confidence and Top Company Choice\n\n\n\n\n\n\n\n\n\n\nPreferred Company\n\nCompletely confident\nN = 13\n\nNot confident at all\nN = 37\n\nNot very confident\nN = 99\n\nSomewhat confident\nN = 187\n\nVery confident\nN = 89\n\np-value1\n\n\n\n\nPreferred Company (Rank 1), n (%)\n\n\n\n\n\n0.002\n\n\n    Company 1\n10 (77)\n9 (24)\n36 (36)\n99 (53)\n58 (65)\n\n\n\n    Company 2\n1 (7.7)\n6 (16)\n16 (16)\n15 (8.0)\n2 (2.2)\n\n\n\n    Company 3\n0 (0)\n16 (43)\n35 (35)\n49 (26)\n17 (19)\n\n\n\n    Company 4\n2 (15)\n2 (5.4)\n8 (8.1)\n11 (5.9)\n6 (6.7)\n\n\n\n    Company 5\n0 (0)\n4 (11)\n3 (3.0)\n12 (6.4)\n4 (4.5)\n\n\n\n    Company 6\n0 (0)\n0 (0)\n0 (0)\n0 (0)\n1 (1.1)\n\n\n\n    Company 7\n0 (0)\n0 (0)\n1 (1.0)\n1 (0.5)\n1 (1.1)\n\n\n\n\n\n1 Pearson’s Chi-squared test",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
     ]
@@ -143,8 +193,8 @@
     "objectID": "objectives_1.html#strategic-synthesis-for-scaling",
     "href": "objectives_1.html#strategic-synthesis-for-scaling",
     "title": "\n2  Objective 1: Strategy for Scaling\n",
-    "section": "\n2.5 Strategic Synthesis for Scaling",
-    "text": "2.5 Strategic Synthesis for Scaling\nBased on the data above:\n\nPricing: As WTP is lower for AVs, AV firms should enter the market with competitive pricing. If the WTP gap is large, they should consider subsidies or promotions to drive initial adoption and build a safety record. This will help overcome the initial trust barrier and have consumers experience the technology firsthand.\nMarketing: Prioritize “Safety” messaging over “Ethics” as the ANOVA F-value for safety is higher. Thus, investments in safety demonstrations, transparent safety records, and endorsements from safety authorities will yield higher returns in consumer trust and WTP. If resources allow, ethical assurances can be secondary messaging.\nProduct Mix: As the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.\nTrust-Building: Implement programs to increase consumer confidence in AV safety, such as offering test rides, transparent reporting of safety metrics, and third-party safety certifications. This will directly translate into higher WTP and faster scaling.\nContinuous Monitoring: Regularly survey consumer confidence and WTP to adapt pricing and marketing strategies as the market matures and trust builds over time.",
+    "section": "\n2.10 Strategic Synthesis for Scaling",
+    "text": "2.10 Strategic Synthesis for Scaling\nBased on the data above:\n\nPricing: As WTP is lower for AVs, AV firms should enter the market with competitive pricing. If the WTP gap is large, they should consider subsidies or promotions to drive initial adoption and build a safety record. This will help overcome the initial trust barrier and have consumers experience the technology firsthand.\nMarketing: Prioritize “Safety” messaging over “Ethics” as the ANOVA F-value for safety is higher. Thus, investments in safety demonstrations, transparent safety records, and endorsements from safety authorities will yield higher returns in consumer trust and WTP. If resources allow, ethical assurances can be secondary messaging.\nProduct Mix: As the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.\nTrust-Building: Implement programs to increase consumer confidence in AV safety, such as offering test rides, transparent reporting of safety metrics, and third-party safety certifications. This will directly translate into higher WTP and faster scaling.\nContinuous Monitoring: Regularly survey consumer confidence and WTP to adapt pricing and marketing strategies as the market matures and trust builds over time.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objective 1: Strategy for Scaling</span>"
     ]
