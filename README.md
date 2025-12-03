@@ -34,3 +34,14 @@ This repository contains a Quarto book project that analyzes consumer sentiment 
 
   * **Hybrid Rendering:** Automatically switches between interactive Plotly charts for HTML and static ggplot2 charts for PDF/Word to ensure compatibility.
   * **Statistical Rigor:** Includes ANOVA, T-tests, and Chi-Square tests formatted with `gtsummary`.
+  
+## References
+
+  * Quarto Documentation: [https://quarto.org/docs/](https://quarto.org/docs/)
+  * Plotly for R: [https://plotly.com/r/](https://plotly.com/r/)
+  * gtsummary Package: [https://www.danieldsjoberg.com/gtsummary/](https://www.danieldsjoberg.com/gtsummary/)
+  * ggthemr Package
+  * Tidyverse: [https://www.tidyverse.org/](https://www.tidyverse.org/)
+  * R Statistical Software: [https://www.r-project.org/](https://www.r-project.org/)
+  * Google Gemini 3 for framing analysis
+  * Notebooklm by Google for research assistance
