@@ -39,3 +39,20 @@ To successfully scale, the AV firm must:
 ## Final Thoughts
 
 The journey to widespread adoption of Autonomous Vehicles is as much about **building trust** and **navigating liability** as it is about technological innovation. By focusing on these strategic pillars, AV companies can position themselves for sustainable growth in a rapidly evolving market landscape. The insights derived from our data-driven analysis provide a clear roadmap for overcoming the challenges ahead and capitalizing on the transformative potential of AV technology.
+
+## Summary by AI
+
+### Inforgraphic Summary
+
+![](images/InfoGraphicOverview.png){fig-align="center" width="100%"}
+
+### Video Summary
+
+::: {=html}
+<iframe width="560" height="315" 
+  src="https://drive.google.com/file/d/1hckxDZoVr9PgyZHBtoSE896nazsYo3rb/preview" 
+  title="AVs: The Human Roadblock" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+  picture-in-picture; web-share" allowfullscreen>
+</iframe>
+:::

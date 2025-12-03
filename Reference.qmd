@@ -1,0 +1,17 @@
+---
+title: "Reference"
+format: html
+---
+
+# Reference
+1. R Core Team (2024). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+2. Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., & Yutani, H. (2019). *Welcome to the tidyverse*. Journal of Open Source Software, 4(43), 1686. https://doi.org/10.21105/joss.01686.
+3. Xie, Y., Allaire, J. J., & Grolemund, G. (2018). *R Markdown: The Definitive Guide*. Chapman and Hall/CRC. https://bookdown.org/yihui/rmarkdown.
+4. Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer-Verlag New York. https://ggplot2.tidyverse.org.
+5. Dowle, M., & Srinivasan, A. (2024). *data.table: Extension of `data.frame`*. R package version 1.14.8. https://CRAN.R-project.org/package=data.table.
+6. Hester, J., Wickham, H., & Francois, R. (2024). *readr: Read Rectangular Text Data*. R package version 2.1.4. https://CRAN.R-project.org/package=readr.
+7. Wickham, H., François, R., Henry, L., & Müller, K. (2024). *dplyr: A Grammar of Data Manipulation*. R package version 1.1.2. https://CRAN.R-project.org/package=dplyr.
+8. Slowikowski, K. (2024). *ggrepel: Automatically Position Non-Overlapping Text Labels with 'ggplot2'*. R package version 0.9.4. https://CRAN.R-project.org/package=ggrepel.
+9. Kassambara, A. (2024). *ggpubr: 'ggplot2' Based Publication Ready Plots*. R package version 0.6.4. https://CRAN.R-project.org/package=ggpubr.
+10. Google Gemini 3. (2025). *Google Gemini 3 Language Model*. https://ai.google.com/research/gemini.
+11. Notebooklm by Google. (2025). *NotebookLM: Your AI Research Notebook*. https://notebooklm.google.com/.

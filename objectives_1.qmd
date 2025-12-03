@@ -66,6 +66,7 @@ if (knitr::is_html_output()) {
   p
 }
 ```
+
 ```{r}
 #| label: tab-reg-private
 #| echo: false
@@ -119,6 +120,7 @@ if (knitr::is_html_output()) {
   p5
 }
 ```
+
 ```{r}
 #| label: tab-tech-anova
 #| echo: false
@@ -140,7 +142,8 @@ df_tech %>%
   modify_header(label = "**Tech Confidence**") %>%
   bold_labels()
 ```
-*Analysis:* A significant ANOVA here indicates that tech-savvy consumers are more willing to pay for AV rides. This suggests targeted marketing and early adoption strategies should focus on this demographic to build initial traction. 
+
+*Analysis:* A significant ANOVA here indicates that tech-savvy consumers are more willing to pay for AV rides. This suggests targeted marketing and early adoption strategies should focus on this demographic to build initial traction.
 
 ## Demographic Analysis: Gender
 
@@ -173,6 +176,7 @@ if (knitr::is_html_output()) {
   p_gen
 }
 ```
+
 ```{r}
 #| label: tab-gender-wtp-stats
 #| echo: false
@@ -190,8 +194,8 @@ df_gender %>%
   add_p() %>%
   bold_labels()
 ```
-**Analysis:** There is no significant difference in WTP by gender, indicating that pricing strategies do not need to be gender-specific. This suggests a uniform pricing approach across genders is appropriate.
 
+**Analysis:** There is no significant difference in WTP by gender, indicating that pricing strategies do not need to be gender-specific. This suggests a uniform pricing approach across genders is appropriate.
 
 ## Private vs. Shared Dynamics
 
@@ -227,6 +231,7 @@ if (knitr::is_html_output()) {
   p2
 }
 ```
+
 ```{r}
 #| label: tab-reg-shared
 #| echo: false
@@ -277,6 +282,7 @@ if (knitr::is_html_output()) {
   p3
 }
 ```
+
 ```{r}
 #| label: tab-trust-anova
 #| echo: false
@@ -330,6 +336,7 @@ if (knitr::is_html_output()) {
   p4
 }
 ```
+
 ```{r}
 #| label: tab-ethics-anova
 #| echo: false
@@ -397,6 +404,7 @@ if (knitr::is_html_output()) {
   p_conf_comp
 }
 ```
+
 ```{r}
 #| label: tab-safety-ethics-anova
 #| echo: false
@@ -479,6 +487,7 @@ if (knitr::is_html_output()) {
   p_rank
 }
 ```
+
 **Analysis:** The ranking data provides insights into which companies are perceived as leaders in AV technology. Companies that rank higher may have a competitive advantage in consumer trust, which can be leveraged in marketing and partnership strategies. Here based on Average preference rank, we can identify which companies are leading in consumer trust and preference. Here company 1 appears to be the leader.
 
 ## Impact of Tech Savviness on Company Preference
@@ -521,6 +530,7 @@ if (knitr::is_html_output()) {
   p_tech_pref
 }
 ```
+
 ```{r}
 #| label: tab-company-tech-chi
 #| echo: false
@@ -543,7 +553,6 @@ top_choice %>%
   modify_caption("**Table: Association between Tech Confidence and Top Company Choice**")
 
 ```
-
 
 ## Strategic Synthesis for Scaling
 

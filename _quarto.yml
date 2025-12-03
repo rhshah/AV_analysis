@@ -25,6 +25,7 @@ book:
     - objectives_1.qmd
     - objectives_2.qmd
     - conclusion.qmd
+    - References.qmd
 
   description: "A comprehensive analysis of the autonomous vehicle industry, focusing on consumer behavior, market trends, and strategic insights for stakeholders."
   page-footer: 
