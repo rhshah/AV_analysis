@@ -63,7 +63,13 @@ if (knitr::is_html_output()) {
 } else {
   p
 }
-
+```
+```{r}
+#| label: tab-reg-private
+#| warning: false
+#| message: false
+#| tab-cap: "T-test private rides"
+#| tab-align: "center"
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>% 
   tidy() %>% 
@@ -110,7 +116,13 @@ if (knitr::is_html_output()) {
 } else {
   p2
 }
-
+```
+```{r}
+#| label: tab-reg-shared
+#| warning: false
+#| message: false
+#| tab-cap: "T-test shared rides"
+#| tab-align: "center"
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_3, df$maxfare_4, paired = TRUE) %>% 
   tidy() %>% 
@@ -150,7 +162,13 @@ if (knitr::is_html_output()) {
 } else {
   p3
 }
-
+```
+```{r}
+#| label: tab-trust-anova
+#| warning: false
+#| message: false
+#| tab-cap: "Annova-test-safety"
+#| tab-align: "center"
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
   select(maxfare_2, conf_safe) %>%
@@ -192,7 +210,13 @@ if (knitr::is_html_output()) {
 } else {
   p4
 }
-
+```
+```{r}
+#| label: tab-ethics-anova
+#| warning: false
+#| message: false
+#| tab-cap: "Annova-test-ethics"
+#| tab-align: "center"
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
   select(maxfare_2, conf_right) %>%

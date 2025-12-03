@@ -57,7 +57,13 @@ if (knitr::is_html_output()) {
 } else {
   p
 }
-
+```
+```{r}
+#| label: tab-reg
+#| warning: false
+#| message: false
+#| tab-cap: "chi-square-test-regulation"
+#| tab-align: "center"
 # --- Statistical Test: Chi-Square Goodness of Fit ---
 chisq.test(reg_counts$n) %>%
   tidy() %>%
@@ -124,7 +130,13 @@ if (knitr::is_html_output()) {
 } else {
   p_blame
 }
-
+```
+```{r}
+#| label: tab-reg-blame
+#| warning: false
+#| message: false
+#| tab-cap: "Summary-Statistics-Blame"
+#| tab-align: "center"
 # 2. Statistical Summary Table
 df %>%
   select(acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
