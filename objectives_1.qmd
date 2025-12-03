@@ -122,11 +122,12 @@ t.test(df$maxfare_3, df$maxfare_4, paired = TRUE) %>%
   cols_label(estimate = "Mean Diff", statistic = "t-statistic", p.value = "P-Value", 
              conf.low = "95% CI Lower", conf.high = "95% CI Upper")
 ```
+
 *Analysis:* Comparing the WTP drop from Private to Shared for both Human and AV modes reveals insights into consumer preferences for ride-sharing in the context of autonomous technology. Here we see if the shared model further depresses WTP significantly.
 
 ## The Trust Premium (Safety)
 
-**Question:** *Can we charge more if consumers trust the safety technology?* 
+**Question:** *Can we charge more if consumers trust the safety technology?*
 
 ```{r}
 #| label: fig-conf-safe
@@ -207,18 +208,19 @@ df %>%
   bold_labels()
 
 ```
+
 *Analysis:* If the ANOVA for ethical confidence is significant but with a lower F-value than safety, it indicates that while ethics matter, safety is the primary trust driver for WTP. Thus, ethical assurances are secondary to physical safety in scaling strategy.
 
 ## Strategic Synthesis for Scaling
 
 Based on the data above:
 
-1. **Pricing:** As WTP is lower for AVs, AV firms should enter the market with competitive pricing. If the WTP gap is large, they should consider subsidies or promotions to drive initial adoption and build a safety record. This will help overcome the initial trust barrier and have consumers experience the technology firsthand. 
+1.  **Pricing:** As WTP is lower for AVs, AV firms should enter the market with competitive pricing. If the WTP gap is large, they should consider subsidies or promotions to drive initial adoption and build a safety record. This will help overcome the initial trust barrier and have consumers experience the technology firsthand.
 
-2. **Marketing:** Prioritize "Safety" messaging over "Ethics" as the ANOVA F-value for safety is higher. Thus, investments in safety demonstrations, transparent safety records, and endorsements from safety authorities will yield higher returns in consumer trust and WTP. If resources allow, ethical assurances can be secondary messaging.
+2.  **Marketing:** Prioritize "Safety" messaging over "Ethics" as the ANOVA F-value for safety is higher. Thus, investments in safety demonstrations, transparent safety records, and endorsements from safety authorities will yield higher returns in consumer trust and WTP. If resources allow, ethical assurances can be secondary messaging.
 
-3. **Product Mix:** As the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.
+3.  **Product Mix:** As the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.
 
-4. **Trust-Building:** Implement programs to increase consumer confidence in AV safety, such as offering test rides, transparent reporting of safety metrics, and third-party safety certifications. This will directly translate into higher WTP and faster scaling.
+4.  **Trust-Building:** Implement programs to increase consumer confidence in AV safety, such as offering test rides, transparent reporting of safety metrics, and third-party safety certifications. This will directly translate into higher WTP and faster scaling.
 
-5. **Continuous Monitoring:** Regularly survey consumer confidence and WTP to adapt pricing and marketing strategies as the market matures and trust builds over time.
+5.  **Continuous Monitoring:** Regularly survey consumer confidence and WTP to adapt pricing and marketing strategies as the market matures and trust builds over time.

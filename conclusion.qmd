@@ -3,16 +3,39 @@
 ## Summary of Findings
 
 ### The Scaling Challenge (Objective 1)
-Our analysis reveals that scaling Autonomous Vehicles is not just a technological challenge, but a **trust** and **pricing** challenge. 
-* **WTP Gap:** The data shows a significant difference in WTP between Human and AV rides. Consumers currently demand a discount for the perceived risk of AVs.
-* **Trust Leverage:** High confidence in safety correlates strongly with higher WTP. Therefore, the most effective scaling strategy is **Trust-Building**, not just price-cutting.
+
+Our analysis reveals that scaling Autonomous Vehicles is not just a technological challenge, but a **trust** and **pricing** challenge.
+
+**WTP Gap:** The data illustrates a notable disparity in willingness to pay between traditional human-driven rides and AV rides. Consumers currently view AVs with skepticism, often demanding a discount to offset their perceived risks. This WTP gap indicates that, for many potential users, the introduction of AVs is not merely a question of efficiency or convenience but involves deep-seated concerns about safety and reliability.
+
+![](images/Conclusion_WTP_GAP.png){fig-align="center" width="100%"}
+
+**Trust Leverage:** The relationship between consumer confidence and willingness to pay is striking. High trust in safety features and reliability correlates strongly with an increased WTP for AV services. Consequently, it is clear that strategies centered on **trust-building** will be more effective in achieving market penetration than those that solely focus on reducing prices. This suggests that investments in safety improvements, transparent communication, and consumer education should be prioritized to foster trust in AV technology.
+
+![](images/Conclusion_Trust.png){fig-align="center" width="100%"}
 
 ### The Liability Landscape (Objective 2)
-* **Corporate Responsibility:** The public overwhelmingly assigns blame to the AV Company rather than the programmer or the government. This signals that the industry must carry heavy insurance and liability protections.
-* **Regulation:** There is a clear mandate for Government oversight. Strategies that attempt to bypass regulation will face significant public backlash.
+
+-   **Corporate Responsibility:** The findings reveal a significant public sentiment regarding liability, with a strong tendency to attribute blame to the AV company in the event of an incident, as opposed to placing responsibility on programmers or government bodies. This indicates that AV companies will need to implement robust insurance and liability frameworks to safeguard against potential legal challenges and financial repercussions. Public expectations demand that these companies take full accountability for their products, necessitating comprehensive risk management strategies.
+
+![](images/Conclusion_Corporate_Responsibility.png){fig-align="center" width="100%"}
+
+-   **Regulation:** Our research underscores the critical need for regulatory frameworks governing the AV industry. The public sentiment leans heavily toward a demand for government oversight, which impacts the acceptance and integration of AV technologies into society. Attempts to circumvent established regulations could lead to significant public backlash and erode consumer trust, ultimately hindering the scalability of AVs. Hence, navigating the regulatory landscape will be paramount to building public trust and ensuring long-term success.
+
+![](images/Conclusion_Regulation.png){fig-align="center" width="100%"}
 
 ## Strategic Recommendation
+
 To successfully scale, the AV firm must:
-1.  **Operate as a Utility:** Embrace government regulation to build legitimacy.
-2.  **Price for Penetration:** Accept lower initial margins to build the safety data record.
-3.  **Market "Cyber-Safety":** Address the qualitative fears of hacking and glitches directly in marketing materials.
+
+1.  **Operate as a Utility:** Embrace and integrate with government regulations to build legitimacy and public confidence in AV services. Positioning the AV company as a public utility, similar to traditional transport services, can nurture a sense of reliability and accountability among consumers.
+
+2.  **Price for Penetration:** Consider a strategy that accepts lower margins initially to establish a robust safety data record. This approach not only enhances the credibility of AVs but also allows for the gradual adjustment of pricing as consumer trust and technology reliability increase over time.
+
+3.  **Market "Cyber-Safety":** Actively address and counteract qualitative fears concerning hacking and potential glitches in AV systems through transparent marketing. By openly discussing security measures and safety protocols, the company can mitigate apprehensions and reinforce consumer confidence in AV technology. This proactive engagement will be crucial in shaping public perception and fostering broader acceptance of AVs.
+
+![](images/Conclusion_Recommendations.png){fig-align="center" width="100%"}
+
+## Final Thoughts
+
+The journey to widespread adoption of Autonomous Vehicles is as much about **building trust** and **navigating liability** as it is about technological innovation. By focusing on these strategic pillars, AV companies can position themselves for sustainable growth in a rapidly evolving market landscape. The insights derived from our data-driven analysis provide a clear roadmap for overcoming the challenges ahead and capitalizing on the transformative potential of AV technology.

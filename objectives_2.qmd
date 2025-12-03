@@ -68,8 +68,8 @@ chisq.test(reg_counts$n) %>%
   fmt_number(columns = p.value, decimals = 3) %>%
   cols_label(statistic = "Chi-Squared", p.value = "P-Value", parameter = "df")
 ```
-*Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key. Here , legitimacy trumps speed. The AV firm should embrace regulation as a trust-building mechanism rather than resist it. Also, the significant Chi-Square result indicates that preferences are not uniformly distributed, highlighting a clear public inclination towards government oversight.
 
+*Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key. Here , legitimacy trumps speed. The AV firm should embrace regulation as a trust-building mechanism rather than resist it. Also, the significant Chi-Square result indicates that preferences are not uniformly distributed, highlighting a clear public inclination towards government oversight.
 
 ## Blame Attribution
 
@@ -78,7 +78,6 @@ chisq.test(reg_counts$n) %>%
 **Question:** *Is the corporation liable?*
 
 **Question:** *Is the regulator liable?*
-
 
 ```{r}
 #| label: blame-analysis
@@ -141,8 +140,8 @@ df %>%
   modify_header(label = "**Entity**", stat_0 = "**Mean Score (SD)**") %>%
   modify_caption("**Table: Descriptive Statistics for Blame Attribution**")
 ```
-*Analysis:* The public overwhelmingly blames the AV Company, indicating that corporate responsibility will be a central issue in liability discussions. This suggests that AV firms must invest heavily in insurance and risk mitigation strategies. The coder and government are seen as less culpable, which may influence how legal frameworks are structured around AV incidents.
 
+*Analysis:* The public overwhelmingly blames the AV Company, indicating that corporate responsibility will be a central issue in liability discussions. This suggests that AV firms must invest heavily in insurance and risk mitigation strategies. The coder and government are seen as less culpable, which may influence how legal frameworks are structured around AV incidents.
 
 ## Qualitative Risk Analysis
 
