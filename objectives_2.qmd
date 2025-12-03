@@ -4,9 +4,9 @@
 
 ```{r}
 #| label: load-obj2
-#| echo: false
-#| warning: false
 #| message: false
+#| warning: false
+#| include: false
 library(tidyverse)
 library(gtsummary)
 library(gt)
@@ -32,10 +32,11 @@ ggthemr("fresh")
 
 ```{r}
 #| label: fig-reg
-#| warning: false
+#| echo: false
 #| message: false
-#| fig-cap: "Preferred Regulatory Body for Autonomous Vehicles"
-#| fig-align: "center"
+#| warning: false
+#| fig-align: center
+#| fig-cap: Preferred Regulatory Body for Autonomous Vehicles
 
 
 # Prepare Data
@@ -60,10 +61,11 @@ if (knitr::is_html_output()) {
 ```
 ```{r}
 #| label: tab-reg
-#| warning: false
+#| echo: false
 #| message: false
-#| tab-cap: "chi-square-test-regulation"
-#| tab-align: "center"
+#| warning: false
+#| tab-align: center
+#| tab-cap: chi-square-test-regulation
 # --- Statistical Test: Chi-Square Goodness of Fit ---
 chisq.test(reg_counts$n) %>%
   tidy() %>%
@@ -75,7 +77,7 @@ chisq.test(reg_counts$n) %>%
   cols_label(statistic = "Chi-Squared", p.value = "P-Value", parameter = "df")
 ```
 
-*Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key. Here , legitimacy trumps speed. The AV firm should embrace regulation as a trust-building mechanism rather than resist it. Also, the significant Chi-Square result indicates that preferences are not uniformly distributed, highlighting a clear public inclination towards government oversight.
+**Analysis:** A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key. Here , legitimacy trumps speed. The AV firm should embrace regulation as a trust-building mechanism rather than resist it. Also, the significant Chi-Square result indicates that preferences are not uniformly distributed, highlighting a clear public inclination towards government oversight.
 
 ## Blame Attribution
 
@@ -87,10 +89,11 @@ chisq.test(reg_counts$n) %>%
 
 ```{r}
 #| label: blame-analysis
-#| warning: false
+#| echo: false
 #| message: false
-#| fig-cap: "Blame Attribution Across Entities"
-#| fig-align: "center"
+#| warning: false
+#| fig-align: center
+#| fig-cap: Blame Attribution Across Entities
 # 1. Scientific Plot with Error Bars
 # Reshape for Plotting
 blame_long <- df %>%
@@ -133,10 +136,11 @@ if (knitr::is_html_output()) {
 ```
 ```{r}
 #| label: tab-reg-blame
-#| warning: false
+#| echo: false
 #| message: false
-#| tab-cap: "Summary-Statistics-Blame"
-#| tab-align: "center"
+#| warning: false
+#| tab-align: center
+#| tab-cap: Summary-Statistics-Blame
 # 2. Statistical Summary Table
 df %>%
   select(acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
@@ -153,7 +157,7 @@ df %>%
   modify_caption("**Table: Descriptive Statistics for Blame Attribution**")
 ```
 
-*Analysis:* The public overwhelmingly blames the AV Company, indicating that corporate responsibility will be a central issue in liability discussions. This suggests that AV firms must invest heavily in insurance and risk mitigation strategies. The coder and government are seen as less culpable, which may influence how legal frameworks are structured around AV incidents.
+**Analysis:** The public overwhelmingly blames the AV Company, indicating that corporate responsibility will be a central issue in liability discussions. This suggests that AV firms must invest heavily in insurance and risk mitigation strategies. The coder and government are seen as less culpable, which may influence how legal frameworks are structured around AV incidents.
 
 ## Qualitative Risk Analysis
 
@@ -161,8 +165,9 @@ df %>%
 
 ```{r}
 #| label: risks-text
-#| warning: false
+#| echo: false
 #| message: false
+#| warning: false
 
 # 1. Filter and Clean Data
 risks <- df %>% 
@@ -201,4 +206,4 @@ if (knitr::is_html_output()) {
 
 ```
 
-*Analysis:* Common themes include fears of hacking, software glitches, and loss of control. Addressing these concerns through robust cybersecurity measures and transparent communication will be essential for consumer acceptance. Safety is not just a technical issue but a psychological one. Thus, marketing strategies should directly tackle these fears to build trust.
+**Analysis:** Common themes include fears of hacking, software glitches, and loss of control. Addressing these concerns through robust cybersecurity measures and transparent communication will be essential for consumer acceptance. Safety is not just a technical issue but a psychological one. Thus, marketing strategies should directly tackle these fears to build trust.

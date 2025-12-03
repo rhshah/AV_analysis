@@ -4,9 +4,9 @@
 
 ```{r}
 #| label: load-obj1
-#| echo: false
-#| warning: false
 #| message: false
+#| warning: false
+#| include: false
 library(tidyverse)
 library(plotly)
 library(ggpubr)
@@ -38,10 +38,11 @@ ggthemr("fresh")
 
 ```{r}
 #| label: fig-wtp-comp
+#| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "WTP Comparison: Private Human vs. Autonomous Vehicles"
-#| fig-align: "center"
+#| fig-align: center
+#| fig-cap: WTP Comparison: Private Human vs. Autonomous Vehicles
 # Prepare Data
 df_long <- df %>%
   select(participant_id, maxfare_1, maxfare_2) %>%
@@ -66,10 +67,11 @@ if (knitr::is_html_output()) {
 ```
 ```{r}
 #| label: tab-reg-private
-#| warning: false
+#| echo: false
 #| message: false
-#| tab-cap: "T-test private rides"
-#| tab-align: "center"
+#| warning: false
+#| tab-align: center
+#| tab-cap: T-test private rides
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>% 
   tidy() %>% 
@@ -90,10 +92,11 @@ t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>%
 
 ```{r}
 #| label: fig-wtp-shared
-#| warning: false
+#| echo: false
 #| message: false
-#| fig-cap: "WTP Comparison: Shared Human vs. Shared Autonomous Vehicles"
-#| fig-align: "center"
+#| warning: false
+#| fig-align: center
+#| fig-cap: WTP Comparison: Shared Human vs. Shared Autonomous Vehicles
 
 # Prepare Data
 df_shared <- df %>%
@@ -119,10 +122,11 @@ if (knitr::is_html_output()) {
 ```
 ```{r}
 #| label: tab-reg-shared
-#| warning: false
+#| echo: false
 #| message: false
-#| tab-cap: "T-test shared rides"
-#| tab-align: "center"
+#| warning: false
+#| tab-align: center
+#| tab-cap: T-test shared rides
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_3, df$maxfare_4, paired = TRUE) %>% 
   tidy() %>% 
@@ -143,8 +147,11 @@ t.test(df$maxfare_3, df$maxfare_4, paired = TRUE) %>%
 
 ```{r}
 #| label: fig-conf-safe
-#| warning: false
+#| echo: false
 #| message: false
+#| warning: false
+#| fig-cap: "WTP by Safety Confidence Level"
+#| fig-align: "center"
 
 # Plot
 p3 <- ggplot(df, aes(x = conf_safe, y = maxfare_2, fill = conf_safe)) +
@@ -165,10 +172,11 @@ if (knitr::is_html_output()) {
 ```
 ```{r}
 #| label: tab-trust-anova
-#| warning: false
+#| echo: false
 #| message: false
-#| tab-cap: "Annova-test-safety"
-#| tab-align: "center"
+#| warning: false
+#| tab-align: center
+#| tab-cap: Annova-test-safety
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
   select(maxfare_2, conf_safe) %>%
@@ -192,7 +200,11 @@ df %>%
 
 ```{r}
 #| label: fig-conf-ethics
+#| echo: false
+#| message: false
 #| warning: false
+#| fig-cap: "WTP by Ethical Confidence Level"
+#| fig-align: "center"
 
 # Plot
 p4 <- ggplot(df, aes(x = conf_right, y = maxfare_2, fill = conf_right)) +
@@ -213,10 +225,11 @@ if (knitr::is_html_output()) {
 ```
 ```{r}
 #| label: tab-ethics-anova
-#| warning: false
+#| echo: false
 #| message: false
-#| tab-cap: "Annova-test-ethics"
-#| tab-align: "center"
+#| warning: false
+#| tab-align: center
+#| tab-cap: Annova-test-ethics
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
   select(maxfare_2, conf_right) %>%
