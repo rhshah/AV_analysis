@@ -9,8 +9,17 @@
 #| message: false
 library(tidyverse)
 library(plotly)
+library(gtsummary)
+library(gt)
+library(broom)
+library(ggthemr)
 
 df <- read.csv("./data/AVsurvey.csv")
+
+# Set theme
+theme_gtsummary_journal(journal = "jama")
+ggthemr("fresh")
+
 ```
 
 ## 2.1 The Regulatory Mandate
@@ -19,52 +28,102 @@ df <- read.csv("./data/AVsurvey.csv")
 ```{r}
 #| label: fig-reg
 #| warning: false
+#| message: false
+#| fig-cap: "Preferred Regulatory Body for Autonomous Vehicles"
+#| fig-align: "center"
 
-reg_counts <- df %>% count(opinions) %>% mutate(opinions = reorder(opinions, -n))
 
-ggplot(reg_counts, aes(x = opinions, y = n, fill = opinions)) +
-  geom_bar(stat = "identity") +
+# Prepare Data
+reg_counts <- df %>% 
+  count(opinions) %>% 
+  mutate(opinions = reorder(opinions, -n))
+
+# Plot
+p <- ggplot(reg_counts, aes(x = opinions, y = n, fill = opinions)) +
+  geom_bar(stat = "identity", width = 0.7, alpha = 0.9) +
   labs(title = "Preferred Regulatory Body", x = "", y = "Count") +
-  theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14),
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(p)
+
+# --- Statistical Test: Chi-Square Goodness of Fit (Formatted with gt) ---
+chisq.test(reg_counts$n) %>%
+  tidy() %>%
+  select(statistic, p.value, parameter, method) %>%
+  gt() %>%
+  tab_header(title = "Chi-Square Test: Uniformity of Preference") %>%
+  fmt_number(columns = c(statistic), decimals = 2) %>%
+  fmt_number(columns = p.value, decimals = 3) %>%
+  cols_label(statistic = "Chi-Squared", p.value = "P-Value", parameter = "df")
 ```
 *Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key.
 
-## 2.2 Blame Attribution: The Programmer
+
+## 2.2 - 2.4 Blame Attribution
+
 **Question:** *Is the individual coder liable?*
 
-```{r}
-#| label: blame-prog
-mean_prog <- mean(df$acc_blame_programmer, na.rm=TRUE)
-print(paste("Average Blame Assigned to Programmer (0-100):", round(mean_prog, 2)))
-```
-
-## 2.3 Blame Attribution: The AV Company
 **Question:** *Is the corporation liable?*
 
-```{r}
-#| label: blame-comp
-mean_comp <- mean(df$acc_blame_company, na.rm=TRUE)
-print(paste("Average Blame Assigned to Company (0-100):", round(mean_comp, 2)))
-```
-
-## 2.4 Blame Attribution: The Government
 **Question:** *Is the regulator liable?*
 
+
 ```{r}
-#| label: blame-govt
-mean_govt <- mean(df$acc_blame_govt, na.rm=TRUE)
-print(paste("Average Blame Assigned to Government (0-100):", round(mean_govt, 2)))
-
-# Comparative Plot
+#| label: blame-analysis
+#| warning: false
+#| message: false
+#| fig-cap: "Blame Attribution Across Entities"
+#| fig-align: "center"
+# 1. Scientific Plot with Error Bars
+# Reshape for Plotting
 blame_long <- df %>%
-  select(acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
-  pivot_longer(everything(), names_to = "Entity", values_to = "Blame")
+  select(participant_id, acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
+  pivot_longer(cols = starts_with("acc_blame"), 
+               names_to = "Entity_Code", 
+               values_to = "Blame_Score") %>%
+  mutate(Entity = case_when(
+    Entity_Code == "acc_blame_programmer" ~ "Programmer",
+    Entity_Code == "acc_blame_company" ~ "AV Company",
+    Entity_Code == "acc_blame_govt" ~ "Government"
+  ))
 
-ggplot(blame_long, aes(x = Entity, y = Blame, fill = Entity)) +
-  geom_bar(stat = "summary", fun = "mean") +
-  labs(title = "Average Blame Attribution", y = "Mean Score") +
-  theme_minimal()
+# Calculate Stats for Plot
+blame_summary_plot <- blame_long %>%
+  group_by(Entity) %>%
+  summarise(
+    Mean_Blame = mean(Blame_Score, na.rm = TRUE),
+    SE = sd(Blame_Score, na.rm = TRUE) / sqrt(n()),
+    CI_Lower = Mean_Blame - (1.96 * SE),
+    CI_Upper = Mean_Blame + (1.96 * SE)
+  )
+
+p_blame <- ggplot(blame_summary_plot, aes(x = reorder(Entity, -Mean_Blame), y = Mean_Blame, fill = Entity)) +
+  geom_bar(stat = "identity", width = 0.6, alpha = 0.8) +
+  geom_errorbar(aes(ymin = CI_Lower, ymax = CI_Upper), width = 0.2, size = 0.8) +
+  labs(title = "Average Blame Attribution (with 95% CI)", 
+       y = "Mean Blame Score (0-100)", 
+       x = "Entity") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14))
+
+ggplotly(p_blame)
+
+# 2. Statistical Summary Table (gtsummary)
+df %>%
+  select(acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
+  tbl_summary(
+    label = list(
+      acc_blame_programmer ~ "Blame: Programmer",
+      acc_blame_company ~ "Blame: AV Company",
+      acc_blame_govt ~ "Blame: Government"
+    ),
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    digits = all_continuous() ~ 1
+  ) %>%
+  modify_header(label = "**Entity**", stat_0 = "**Mean Score (SD)**") %>%
+  modify_caption("**Table: Descriptive Statistics for Blame Attribution**")
 ```
 
 ## 2.5 Qualitative Risk Analysis
@@ -72,7 +131,13 @@ ggplot(blame_long, aes(x = Entity, y = Blame, fill = Entity)) +
 
 ```{r}
 #| label: risks-text
+#| warning: false
+#| message: false
+#| table-cap: "Consumer Risk Voices"
+#| table-align: "center"
 library(DT)
 risks <- df %>% select(risks_oe) %>% filter(risks_oe != "")
-datatable(head(risks, 20), options = list(pageLength = 5), caption = "Consumer Risk Voices")
+datatable(head(risks, 50), 
+          options = list(pageLength = 5, dom = 'tip'), 
+          caption = "Consumer Risk Voices (Scrollable)")
 ```
