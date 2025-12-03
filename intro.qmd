@@ -54,8 +54,9 @@ To validate these strategic assumptions, we use the `AVsurvey.csv` dataset.
 
 ```{r}
 #| label: setup-data
-#| warning: false
+#| echo: false
 #| message: false
+#| warning: false
 
 library(tidyverse)
 library(DT)
