@@ -14,15 +14,16 @@ library(rstatix)
 library(gtsummary) 
 library(gt)
 library(broom)
-library(ggthemr) # For plot themes
+library(ggthemr)
 
 
 # Load Data
 df <- read.csv("./data/AVsurvey.csv")
 
 # Re-apply factor levels for ordinal variables
-df$conf_safe <- factor(df$conf_safe, levels = c("Not very confident", "Somewhat confident", "Very confident", "Extremely confident"))
-df$conf_right <- factor(df$conf_right, levels = c("Not very confident", "Somewhat confident", "Very confident", "Extremely confident"))
+# We use trimws() to ensure no accidental spaces cause mismatches
+df$conf_safe <- trimws(df$conf_safe)
+df$conf_right <- trimws(df$conf_right)
 
 # Set gtsummary theme to a scientific journal standard (JAMA)
 theme_gtsummary_journal(journal = "jama")
@@ -39,7 +40,8 @@ ggthemr("fresh")
 #| label: fig-wtp-comp
 #| message: false
 #| warning: false
-
+#| fig-cap: "WTP Comparison: Private Human vs. Autonomous Vehicles"
+#| fig-align: "center"
 # Prepare Data
 df_long <- df %>%
   select(participant_id, maxfare_1, maxfare_2) %>%
@@ -55,7 +57,12 @@ p <- ggplot(df_long, aes(x = Mode, y = WTP, fill = Mode)) +
   theme(legend.position = "none",
         plot.title = element_text(face = "bold", size = 14))
 
-ggplotly(p)
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p)
+} else {
+  p
+}
 
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>% 
@@ -69,7 +76,7 @@ t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>%
              conf.low = "95% CI Lower", conf.high = "95% CI Upper")
 ```
 
-**Analysis**: If the mean WTP for AVs is lower, the strategy must initially focus on cost-leadership or subsidization to drive adoption.
+**Analysis**: If the mean WTP for AVs is lower, the strategy must initially focus on cost-leadership or subsidization to drive adoption. Here, we see a significant difference in WTP, indicating consumers expect a discount for AV rides.
 
 ## Private vs. Shared Dynamics
 
@@ -79,6 +86,8 @@ t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>%
 #| label: fig-wtp-shared
 #| warning: false
 #| message: false
+#| fig-cap: "WTP Comparison: Shared Human vs. Shared Autonomous Vehicles"
+#| fig-align: "center"
 
 # Prepare Data
 df_shared <- df %>%
@@ -95,7 +104,12 @@ p2 <- ggplot(df_shared, aes(x = Mode, y = WTP, fill = Mode)) +
   theme(legend.position = "none",
         plot.title = element_text(face = "bold", size = 14))
 
-ggplotly(p2)
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p2)
+} else {
+  p2
+}
 
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_3, df$maxfare_4, paired = TRUE) %>% 
@@ -108,10 +122,11 @@ t.test(df$maxfare_3, df$maxfare_4, paired = TRUE) %>%
   cols_label(estimate = "Mean Diff", statistic = "t-statistic", p.value = "P-Value", 
              conf.low = "95% CI Lower", conf.high = "95% CI Upper")
 ```
+*Analysis:* Comparing the WTP drop from Private to Shared for both Human and AV modes reveals insights into consumer preferences for ride-sharing in the context of autonomous technology. Here we see if the shared model further depresses WTP significantly.
 
 ## The Trust Premium (Safety)
 
-**Question:** *Can we charge more if consumers trust the safety technology?*
+**Question:** *Can we charge more if consumers trust the safety technology?* 
 
 ```{r}
 #| label: fig-conf-safe
@@ -125,9 +140,15 @@ p3 <- ggplot(df, aes(x = conf_safe, y = maxfare_2, fill = conf_safe)) +
        x = "Confidence Level", 
        y = "WTP ($)") +
   theme(legend.position = "none",
-        plot.title = element_text(face = "bold", size = 14))
+        plot.title = element_text(face = "bold", size = 14),
+         axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggplotly(p3)
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p3)
+} else {
+  p3
+}
 
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
@@ -144,7 +165,7 @@ df %>%
   bold_labels()
 ```
 
-*Analysis:* A significant ANOVA suggests that marketing spend on safety demonstration is directly convertible to higher fares.
+*Analysis:* A significant ANOVA suggests that marketing spend on safety demonstration is directly convertible to higher fares. Here we assess if higher confidence in safety correlates with increased WTP for AV rides. In general, higher confidence should lead to higher WTP. Thus, safety trust-building is a key scaling lever.
 
 ## The Ethics Premium
 
@@ -161,17 +182,43 @@ p4 <- ggplot(df, aes(x = conf_right, y = maxfare_2, fill = conf_right)) +
        x = "Ethical Confidence", 
        y = "WTP ($)") +
   theme(legend.position = "none",
-        plot.title = element_text(face = "bold", size = 14))
+        plot.title = element_text(face = "bold", size = 14),
+         axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggplotly(p4)
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p4)
+} else {
+  p4
+}
+
+# --- Statistical Test: ANOVA via gtsummary ---
+df %>%
+  select(maxfare_2, conf_right) %>%
+  tbl_summary(
+    by = conf_right,
+    label = list(maxfare_2 ~ "WTP for Private AV ($)"),
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    digits = all_continuous() ~ 2
+  ) %>%
+  add_p(test = maxfare_2 ~ "aov") %>% 
+  add_n() %>% 
+  modify_header(label = "**Variable**") %>%
+  bold_labels()
+
 ```
+*Analysis:* If the ANOVA for ethical confidence is significant but with a lower F-value than safety, it indicates that while ethics matter, safety is the primary trust driver for WTP. Thus, ethical assurances are secondary to physical safety in scaling strategy.
 
 ## Strategic Synthesis for Scaling
 
 Based on the data above:
 
-1. **Pricing:** If WTP is lower for AVs, enter the market with a penetration pricing strategy.
+1. **Pricing:** As WTP is lower for AVs, AV firms should enter the market with competitive pricing. If the WTP gap is large, they should consider subsidies or promotions to drive initial adoption and build a safety record. This will help overcome the initial trust barrier and have consumers experience the technology firsthand. 
 
-2. **Marketing:** Prioritize "Safety" messaging over "Ethics" if the ANOVA F-value for safety is higher.
+2. **Marketing:** Prioritize "Safety" messaging over "Ethics" as the ANOVA F-value for safety is higher. Thus, investments in safety demonstrations, transparent safety records, and endorsements from safety authorities will yield higher returns in consumer trust and WTP. If resources allow, ethical assurances can be secondary messaging.
 
-3. **Product Mix:** If the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.
+3. **Product Mix:** As the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.
+
+4. **Trust-Building:** Implement programs to increase consumer confidence in AV safety, such as offering test rides, transparent reporting of safety metrics, and third-party safety certifications. This will directly translate into higher WTP and faster scaling.
+
+5. **Continuous Monitoring:** Regularly survey consumer confidence and WTP to adapt pricing and marketing strategies as the market matures and trust builds over time.

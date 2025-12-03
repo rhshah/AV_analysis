@@ -8,12 +8,16 @@
 #| warning: false
 #| message: false
 library(tidyverse)
-library(plotly)
 library(gtsummary)
 library(gt)
 library(broom)
 library(ggthemr)
+library(tidytext)
+library(wordcloud)
+library(DT)
+library(plotly)
 
+# Load Data
 df <- read.csv("./data/AVsurvey.csv")
 
 # Set theme
@@ -22,7 +26,8 @@ ggthemr("fresh")
 
 ```
 
-## 2.1 The Regulatory Mandate
+## The Regulatory Mandate
+
 **Question:** *Who does the public trust to oversee this technology?*
 
 ```{r}
@@ -46,9 +51,14 @@ p <- ggplot(reg_counts, aes(x = opinions, y = n, fill = opinions)) +
         plot.title = element_text(face = "bold", size = 14),
         axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggplotly(p)
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p)
+} else {
+  p
+}
 
-# --- Statistical Test: Chi-Square Goodness of Fit (Formatted with gt) ---
+# --- Statistical Test: Chi-Square Goodness of Fit ---
 chisq.test(reg_counts$n) %>%
   tidy() %>%
   select(statistic, p.value, parameter, method) %>%
@@ -58,10 +68,10 @@ chisq.test(reg_counts$n) %>%
   fmt_number(columns = p.value, decimals = 3) %>%
   cols_label(statistic = "Chi-Squared", p.value = "P-Value", parameter = "df")
 ```
-*Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key.
+*Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key. Here , legitimacy trumps speed. The AV firm should embrace regulation as a trust-building mechanism rather than resist it. Also, the significant Chi-Square result indicates that preferences are not uniformly distributed, highlighting a clear public inclination towards government oversight.
 
 
-## 2.2 - 2.4 Blame Attribution
+## Blame Attribution
 
 **Question:** *Is the individual coder liable?*
 
@@ -99,6 +109,7 @@ blame_summary_plot <- blame_long %>%
     CI_Upper = Mean_Blame + (1.96 * SE)
   )
 
+# Plot
 p_blame <- ggplot(blame_summary_plot, aes(x = reorder(Entity, -Mean_Blame), y = Mean_Blame, fill = Entity)) +
   geom_bar(stat = "identity", width = 0.6, alpha = 0.8) +
   geom_errorbar(aes(ymin = CI_Lower, ymax = CI_Upper), width = 0.2, size = 0.8) +
@@ -108,9 +119,14 @@ p_blame <- ggplot(blame_summary_plot, aes(x = reorder(Entity, -Mean_Blame), y = 
   theme(legend.position = "none",
         plot.title = element_text(face = "bold", size = 14))
 
-ggplotly(p_blame)
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p_blame)
+} else {
+  p_blame
+}
 
-# 2. Statistical Summary Table (gtsummary)
+# 2. Statistical Summary Table
 df %>%
   select(acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
   tbl_summary(
@@ -125,19 +141,53 @@ df %>%
   modify_header(label = "**Entity**", stat_0 = "**Mean Score (SD)**") %>%
   modify_caption("**Table: Descriptive Statistics for Blame Attribution**")
 ```
+*Analysis:* The public overwhelmingly blames the AV Company, indicating that corporate responsibility will be a central issue in liability discussions. This suggests that AV firms must invest heavily in insurance and risk mitigation strategies. The coder and government are seen as less culpable, which may influence how legal frameworks are structured around AV incidents.
 
-## 2.5 Qualitative Risk Analysis
+
+## Qualitative Risk Analysis
+
 **Question:** *What specific fears do consumers voice in open-ended responses?*
 
 ```{r}
 #| label: risks-text
 #| warning: false
 #| message: false
-#| table-cap: "Consumer Risk Voices"
-#| table-align: "center"
-library(DT)
-risks <- df %>% select(risks_oe) %>% filter(risks_oe != "")
-datatable(head(risks, 50), 
-          options = list(pageLength = 5, dom = 'tip'), 
-          caption = "Consumer Risk Voices (Scrollable)")
+
+# 1. Filter and Clean Data
+risks <- df %>% 
+  select(risks_oe) %>% 
+  filter(risks_oe != "")
+
+# 2. Tokenize and Count Frequencies
+risk_tokens <- risks %>%
+  unnest_tokens(word, risks_oe) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 5) # Filter for words appearing more than 5 times
+
+# 3. Visualize Top Concerns
+p_risks <- ggplot(head(risk_tokens, 15), aes(x = reorder(word, n), y = n, fill = n)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_gradientn(colors = c("lightblue", "blue", "red")) + 
+  labs(title = "Top 15 Common Terms in Risk Responses", x = "Term", y = "Frequency") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14))
+
+# Conditional Output: Interactive for HTML, Static for PDF/DOCX
+if (knitr::is_html_output()) {
+  ggplotly(p_risks)
+} else {
+  p_risks
+}
+
+# 4. Show Data Table (Only in HTML)
+if (knitr::is_html_output()) {
+  datatable(head(risks, 50), 
+            options = list(pageLength = 5, dom = 'tip'), 
+            caption = "Consumer Risk Voices (Scrollable)")
+}
+
 ```
+
+*Analysis:* Common themes include fears of hacking, software glitches, and loss of control. Addressing these concerns through robust cybersecurity measures and transparent communication will be essential for consumer acceptance. Safety is not just a technical issue but a psychological one. Thus, marketing strategies should directly tackle these fears to build trust.
