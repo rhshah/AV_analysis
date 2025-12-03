@@ -71,8 +71,8 @@ if (knitr::is_html_output()) {
 #| echo: false
 #| message: false
 #| warning: false
-#| tab-align: center
-#| tab-cap: T-test private rides
+#| tab-align: "center"
+#| tab-cap: "T-test private rides"
 # --- Statistical Test: Paired T-Test (Formatted with gt) ---
 t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>% 
   tidy() %>% 
@@ -86,6 +86,112 @@ t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>%
 ```
 
 **Analysis**: If the mean WTP for AVs is lower, the strategy must initially focus on cost-leadership or subsidization to drive adoption. Here, we see a significant difference in WTP, indicating consumers expect a discount for AV rides.
+
+## Tech Savviness and WTP
+
+**Question:** *How do consumers’ WTP for rides driven autonomously vary by their own tech savviness?*
+
+```{r}
+#| label: fig-tech-savvy
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "WTP by Tech Savviness Level"
+#| fig-align: "center"
+
+# Prepare Data (Remove NAs)
+df_tech <- df %>% filter(!is.na(conf_safetech))
+
+# Plot
+p5 <- ggplot(df_tech, aes(x = conf_safetech, y = maxfare_2, fill = conf_safetech)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(title = "WTP for Autonomous Ride by Tech Confidence", 
+       x = "Confidence in Tech Maturity", 
+       y = "WTP ($)") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14),
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Conditional Output
+if (knitr::is_html_output()) {
+  ggplotly(p5)
+} else {
+  p5
+}
+```
+```{r}
+#| label: tab-tech-anova
+#| echo: false
+#| message: false
+#| warning: false
+#| tab-align: "center"
+#| tab-cap: "Annova-test-tech-savviness"
+# ANOVA for Tech Savviness
+df_tech %>%
+  select(maxfare_2, conf_safetech) %>%
+  tbl_summary(
+    by = conf_safetech,
+    label = list(maxfare_2 ~ "WTP ($)"),
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    digits = all_continuous() ~ 2
+  ) %>%
+  add_p(test = maxfare_2 ~ "aov") %>% 
+  add_n() %>% 
+  modify_header(label = "**Tech Confidence**") %>%
+  bold_labels()
+```
+*Analysis:* A significant ANOVA here indicates that tech-savvy consumers are more willing to pay for AV rides. This suggests targeted marketing and early adoption strategies should focus on this demographic to build initial traction. 
+
+## Demographic Analysis: Gender
+
+**Question:** *How does WTP vary by Gender?*
+
+```{r}
+#| label: fig-gender-wtp
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "WTP for Private AV by Gender"
+#| fig-align: "center"
+# Prepare Data
+df_gender <- df %>% 
+  filter(!is.na(Sex) & Sex != "")
+
+# Plot
+p_gen <- ggplot(df_gender, aes(x = Sex, y = maxfare_2, fill = Sex)) +
+  geom_boxplot(alpha = 0.7) +
+  labs(title = "WTP for Private AV by Gender", 
+       x = "Gender", 
+       y = "WTP ($)") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14))
+
+# Conditional Output
+if (knitr::is_html_output()) {
+  ggplotly(p_gen)
+} else {
+  p_gen
+}
+```
+```{r}
+#| label: tab-gender-wtp-stats
+#| echo: false
+#| message: false
+#| warning: false
+#| tab-align: center
+ # Stats
+df_gender %>%
+  select(maxfare_2, Sex) %>%
+  tbl_summary(
+    by = Sex,
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    label = list(maxfare_2 ~ "WTP ($)")
+  ) %>%
+  add_p() %>%
+  bold_labels()
+```
+**Analysis:** There is no significant difference in WTP by gender, indicating that pricing strategies do not need to be gender-specific. This suggests a uniform pricing approach across genders is appropriate.
+
 
 ## Private vs. Shared Dynamics
 
@@ -176,8 +282,8 @@ if (knitr::is_html_output()) {
 #| echo: false
 #| message: false
 #| warning: false
-#| tab-align: center
-#| tab-cap: Annova-test-safety
+#| tab-align: "center"
+#| tab-cap: "Annova-test-safety"
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
   select(maxfare_2, conf_safe) %>%
@@ -229,8 +335,8 @@ if (knitr::is_html_output()) {
 #| echo: false
 #| message: false
 #| warning: false
-#| tab-align: center
-#| tab-cap: Annova-test-ethics
+#| tab-align: "center"
+#| tab-cap: "Annova-test-ethics"
 # --- Statistical Test: ANOVA via gtsummary ---
 df %>%
   select(maxfare_2, conf_right) %>%
@@ -247,7 +353,197 @@ df %>%
 
 ```
 
-*Analysis:* If the ANOVA for ethical confidence is significant but with a lower F-value than safety, it indicates that while ethics matter, safety is the primary trust driver for WTP. Thus, ethical assurances are secondary to physical safety in scaling strategy.
+*Analysis:* If the ANOVA for ethical confidence is significant but with a lower F-value than safety, it indicates that while ethics matter, safety is the primary trust driver for WTP. Thus, ethical assurances are secondary to physical safety in scaling strategy, but here we quantify that impact and see that ethics still plays a role.
+
+## Confidence & WTP: Safety vs. Ethics
+
+**Question:** *How do consumers’ WTP change with their confidence in the capacity of AV to keep them safe? And how does it change with their confidence in AV to make the right choice in ethical dilemmas?*
+
+```{r}
+#| label: fig-safety-ethics-comparison
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "WTP by Saftey and Ethics"
+#| fig-align: "center"
+
+# 1. Reshape Data for Side-by-Side Comparison
+df_conf_long <- df %>%
+  select(participant_id, maxfare_2, conf_safe, conf_right) %>%
+  pivot_longer(cols = c(conf_safe, conf_right), 
+               names_to = "Confidence_Type", 
+               values_to = "Level") %>%
+  filter(!is.na(Level)) %>%
+  mutate(Confidence_Type = recode(Confidence_Type, 
+                                  "conf_safe" = "Confidence in Safety",
+                                  "conf_right" = "Confidence in Ethics"))
+
+
+# Plot
+p_conf_comp <- ggplot(df_conf_long, aes(x = Level, y = maxfare_2, fill = Confidence_Type)) +
+  geom_boxplot(alpha = 0.7) +
+  facet_wrap(~Confidence_Type) +
+  labs(title = "WTP ($) by Confidence: Safety vs. Ethics", 
+       x = "Confidence Level", 
+       y = "WTP for Private AV ($)") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14),
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Conditional Output
+if (knitr::is_html_output()) {
+  ggplotly(p_conf_comp)
+} else {
+  p_conf_comp
+}
+```
+```{r}
+#| label: tab-safety-ethics-anova
+#| echo: false
+#| message: false
+#| warning: false
+#| tab-align: "center"
+#| tab-cap: "Annova-test-safety-ethics"
+
+# Statistical Test (Two-Way ANOVA to see interaction)
+# We run separate ANOVAs for clarity in the table
+anova_safe <- aov(maxfare_2 ~ conf_safe, data = df)
+anova_ethics <- aov(maxfare_2 ~ conf_right, data = df)
+
+# Create a combined summary table
+tbl_safe <- df %>% select(maxfare_2, conf_safe) %>% 
+  tbl_summary(by = conf_safe, label = list(maxfare_2 ~ "WTP (Safety Sort)")) %>% 
+  add_p()
+
+tbl_ethics <- df %>% select(maxfare_2, conf_right) %>% 
+  tbl_summary(by = conf_right, label = list(maxfare_2 ~ "WTP (Ethics Sort)")) %>% 
+  add_p()
+
+tbl_merge(
+  tbls = list(tbl_safe, tbl_ethics),
+  tab_spanner = c("**Safety Confidence**", "**Ethical Confidence**")
+)
+
+```
+
+**Analysis:** This side-by-side comparison highlights which dimension of trust (safety vs. ethics) has a stronger influence on WTP. The results can guide prioritization in trust-building efforts. It appears both have significant effects, but safety likely has a stronger impact.
+
+## Company Preference Leaders
+
+**Question:** *Which companies do consumers prefer to be the leaders in the AV industry?*
+
+We analyze the ranking data where consumers ranked 7 companies from 1 (Most Preferred) to 7 (Least Preferred). Lower values indicate higher preference.
+
+```{r}
+#| label: tab-trust-comparison
+#| echo: false
+#| message: false
+#| warning: false
+#| tab-align: "center"
+#| tab-cap: "Trust Dimension Comparison"
+
+
+# 1. Reshape Ranking Data
+# We treat '1' as the best rank.
+df_rank <- df %>%
+  select(participant_id, starts_with("company_purchase_rank"), conf_safetech) %>%
+  pivot_longer(cols = starts_with("company_purchase_rank"), 
+               names_to = "Company_ID", 
+               values_to = "Rank") %>%
+  mutate(Company = str_replace(Company_ID, "company_purchase_rank_", "Company "))
+
+# 2. Calculate Mean Rank
+rank_summary <- df_rank %>%
+  group_by(Company) %>%
+  summarise(
+    Mean_Rank = mean(Rank, na.rm = TRUE),
+    SE = sd(Rank, na.rm = TRUE) / sqrt(n())
+  )
+
+# Plot
+p_rank <- ggplot(rank_summary, aes(x = reorder(Company, Mean_Rank, decreasing = TRUE), y = Mean_Rank, fill = Company)) +
+  geom_col(width = 0.7, alpha = 0.8) +
+  geom_errorbar(aes(ymin = Mean_Rank - 1.96*SE, ymax = Mean_Rank + 1.96*SE), width = 0.2) +
+  coord_flip() +
+  labs(title = "Average Preference Rank (Lower is Better)", 
+       subtitle = "1 = First Choice, 7 = Last Choice",
+       y = "Mean Rank", 
+       x = "") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold", size = 14))
+
+# Conditional Output
+if (knitr::is_html_output()) {
+  ggplotly(p_rank)
+} else {
+  p_rank
+}
+```
+**Analysis:** The ranking data provides insights into which companies are perceived as leaders in AV technology. Companies that rank higher may have a competitive advantage in consumer trust, which can be leveraged in marketing and partnership strategies. Here based on Average preference rank, we can identify which companies are leading in consumer trust and preference. Here company 1 appears to be the leader.
+
+## Impact of Tech Savviness on Company Preference
+
+**Question:** *How do consumers’ preferences change if they are very tech savvy vs. not very tech savvy?*
+
+```{r}
+#| label: fig-company-rank-tech
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Company Preference by Tech Savviness"
+#| fig-align: "center"
+
+# Filter for Top Choice (Rank = 1)
+top_choice <- df_rank %>%
+  filter(Rank == 1, !is.na(conf_safetech))
+
+# Calculate percentages within each confidence group
+tech_pref_summary <- top_choice %>%
+  count(conf_safetech, Company) %>%
+  group_by(conf_safetech) %>%
+  mutate(Percentage = n / sum(n) * 100)
+
+# Plot
+p_tech_pref <- ggplot(tech_pref_summary, aes(x = Company, y = Percentage, fill = Company)) +
+  geom_col() +
+  facet_wrap(~conf_safetech) +
+  coord_flip() +
+  labs(title = "Company Preference (First Choice) by Tech Savviness", 
+       y = "% of Group Choosing as #1",
+       x = "") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Conditional Output
+if (knitr::is_html_output()) {
+  ggplotly(p_tech_pref)
+} else {
+  p_tech_pref
+}
+```
+```{r}
+#| label: tab-company-tech-chi
+#| echo: false
+#| message: false
+#| warning: false
+#| tab-align: "center"
+#| tab-cap: "Chi-Square Test: Company Preference vs. Tech Savviness"
+
+# Table with Explicit Chi-Square Test
+top_choice %>%
+  select(Company, conf_safetech) %>%
+  tbl_summary(
+    by = conf_safetech,
+    label = list(Company ~ "Preferred Company (Rank 1)"),
+    percent = "column" # Ensure percentages sum to 100% down the column
+  ) %>%
+  add_p(test = all_categorical() ~ "chisq.test") %>% # Explicitly force Chi-Square
+  bold_labels() %>%
+  modify_header(label = "**Preferred Company**") %>%
+  modify_caption("**Table: Association between Tech Confidence and Top Company Choice**")
+
+```
+
 
 ## Strategic Synthesis for Scaling
 
