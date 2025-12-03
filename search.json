@@ -268,5 +268,25 @@
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conclusion</span>"
     ]
+  },
+  {
+    "objectID": "conclusion.html#summary-by-ai",
+    "href": "conclusion.html#summary-by-ai",
+    "title": "4  Conclusion",
+    "section": "4.4 Summary by AI",
+    "text": "4.4 Summary by AI\n\n4.4.1 Inforgraphic Summary\n\n\n\n\n\n\n\n4.4.2 Video Summary",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conclusion</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "5  Reference",
+    "section": "",
+    "text": "6 Reference\n\nR Core Team (2024). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.\nWickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., & Yutani, H. (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686. https://doi.org/10.21105/joss.01686.\nXie, Y., Allaire, J. J., & Grolemund, G. (2018). R Markdown: The Definitive Guide. Chapman and Hall/CRC. https://bookdown.org/yihui/rmarkdown.\nWickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\nDowle, M., & Srinivasan, A. (2024). data.table: Extension of data.frame. R package version 1.14.8. https://CRAN.R-project.org/package=data.table.\nHester, J., Wickham, H., & Francois, R. (2024). readr: Read Rectangular Text Data. R package version 2.1.4. https://CRAN.R-project.org/package=readr.\nWickham, H., François, R., Henry, L., & Müller, K. (2024). dplyr: A Grammar of Data Manipulation. R package version 1.1.2. https://CRAN.R-project.org/package=dplyr.\nSlowikowski, K. (2024). ggrepel: Automatically Position Non-Overlapping Text Labels with ‘ggplot2’. R package version 0.9.4. https://CRAN.R-project.org/package=ggrepel.\nKassambara, A. (2024). ggpubr: ‘ggplot2’ Based Publication Ready Plots. R package version 0.6.4. https://CRAN.R-project.org/package=ggpubr.\nGoogle Gemini 3. (2025). Google Gemini 3 Language Model. https://ai.google.com/research/gemini.\nNotebooklm by Google. (2025). NotebookLM: Your AI Research Notebook. https://notebooklm.google.com/.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Reference</span>"
+    ]
   }
 ]
