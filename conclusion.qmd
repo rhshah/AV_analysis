@@ -1,0 +1,18 @@
+# Conclusion
+
+## Summary of Findings
+
+### The Scaling Challenge (Objective 1)
+Our analysis reveals that scaling Autonomous Vehicles is not just a technological challenge, but a **trust** and **pricing** challenge. 
+* **WTP Gap:** The data shows a significant difference in WTP between Human and AV rides. Consumers currently demand a discount for the perceived risk of AVs.
+* **Trust Leverage:** High confidence in safety correlates strongly with higher WTP. Therefore, the most effective scaling strategy is **Trust-Building**, not just price-cutting.
+
+### The Liability Landscape (Objective 2)
+* **Corporate Responsibility:** The public overwhelmingly assigns blame to the AV Company rather than the programmer or the government. This signals that the industry must carry heavy insurance and liability protections.
+* **Regulation:** There is a clear mandate for Government oversight. Strategies that attempt to bypass regulation will face significant public backlash.
+
+## Strategic Recommendation
+To successfully scale, the AV firm must:
+1.  **Operate as a Utility:** Embrace government regulation to build legitimacy.
+2.  **Price for Penetration:** Accept lower initial margins to build the safety data record.
+3.  **Market "Cyber-Safety":** Address the qualitative fears of hacking and glitches directly in marketing materials.

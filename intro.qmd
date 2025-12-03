@@ -1,0 +1,67 @@
+# Industry Strategic Review
+
+This section provides the macroeconomic context for the analysis, evaluating the business landscape of the Autonomous Vehicle industry.
+
+## Industry Overview
+
+The Autonomous Vehicle (AV) industry is currently transitioning from the "Trough of Disillusionment" to the "Slope of Enlightenment" (Gartner Hype Cycle). While early predictions of widespread Level 5 autonomy by 2020 failed to materialize, the market is now seeing tangible commercial deployments in geofenced areas.
+
+  * **Market Size:** Estimated at ~$100 Billion in 2024, projected to grow at a CAGR of >25% through 2030.
+  * **Key Shift:** The business model is shifting from **Asset Ownership** (selling cars to individuals) to **Transportation-as-a-Service (TaaS)** (selling rides via robotaxi fleets).
+
+## Major Players
+
+The competitive landscape is bifurcated into two main approaches:
+
+1.  **The "Lidar & Maps" Camp (Robotaxis):**
+
+      * **Waymo (Alphabet):** The current market leader with fully driverless commercial operations.
+      * **Cruise (GM):** A major player focusing on dense urban robotaxi fleets.
+      * **Zoox (Amazon):** Developing purpose-built carriages for urban transport.
+
+2.  **The "Vision-Only" Camp (Consumer AV):**
+
+      * **Tesla:** Pursuing a "march of nines" approach using camera-only data from consumer fleets to train neural networks.
+
+## Value Proposition
+
+The value drivers differ by customer segment:
+
+| Segment | Primary Value Proposition |
+| :--- | :--- |
+| **Consumer (Rider)** | **Safety:** Removing human error. <br> **Productivity:** Reclaiming commute time. |
+| **Business (Operator)** | **Unit Economics:** Removing the driver (approx. 70% of ride cost). <br> **Utilization:** 24/7 asset uptime. |
+
+## Porter's Five Forces Analysis
+
+1.  **Threat of New Entrants (Low):** Massive capital and data barriers.
+2.  **Bargaining Power of Suppliers (High):** Dependence on specialized chips (Nvidia) and sensors.
+3.  **Bargaining Power of Buyers (Medium):** Fleet operators have negotiating power; individual riders do not.
+4.  **Threat of Substitutes (High):** Remote work, public transit, and micromobility.
+5.  **Rivalry Among Competitors (High):** Winner-take-most dynamics for regulatory approval and network effects.
+
+## Survey Data Overview
+
+To validate these strategic assumptions, we use the `AVsurvey.csv` dataset.
+
+```{r}
+#| label: setup-data
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(DT)
+
+# Load Data
+df <- read.csv("./data/AVsurvey.csv")
+
+# Data Cleaning
+# Ensure factors are ordered for subsequent chapters
+df$conf_safe <- factor(df$conf_safe, 
+                       levels = c("Not very confident", "Somewhat confident", "Very confident", "Extremely confident"))
+df$conf_right <- factor(df$conf_right, 
+                        levels = c("Not very confident", "Somewhat confident", "Very confident", "Extremely confident"))
+
+# Quick Look
+datatable(head(df, 20), options = list(scrollX = TRUE, pageLength = 5), caption = "Survey Data Preview")
+```

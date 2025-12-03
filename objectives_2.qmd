@@ -1,0 +1,78 @@
+# Objective 2: Consumer Concerns
+
+**Goal:** Understand the friction points—regulatory, legal, and psychological—that could slow down AV scaling.
+
+```{r}
+#| label: load-obj2
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(plotly)
+
+df <- read.csv("./data/AVsurvey.csv")
+```
+
+## 2.1 The Regulatory Mandate
+**Question:** *Who does the public trust to oversee this technology?*
+
+```{r}
+#| label: fig-reg
+#| warning: false
+
+reg_counts <- df %>% count(opinions) %>% mutate(opinions = reorder(opinions, -n))
+
+ggplot(reg_counts, aes(x = opinions, y = n, fill = opinions)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Preferred Regulatory Body", x = "", y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+*Analysis:* A strong preference for Government regulation implies that "Moving fast and breaking things" is a dangerous strategy. Lobbying and compliance will be key.
+
+## 2.2 Blame Attribution: The Programmer
+**Question:** *Is the individual coder liable?*
+
+```{r}
+#| label: blame-prog
+mean_prog <- mean(df$acc_blame_programmer, na.rm=TRUE)
+print(paste("Average Blame Assigned to Programmer (0-100):", round(mean_prog, 2)))
+```
+
+## 2.3 Blame Attribution: The AV Company
+**Question:** *Is the corporation liable?*
+
+```{r}
+#| label: blame-comp
+mean_comp <- mean(df$acc_blame_company, na.rm=TRUE)
+print(paste("Average Blame Assigned to Company (0-100):", round(mean_comp, 2)))
+```
+
+## 2.4 Blame Attribution: The Government
+**Question:** *Is the regulator liable?*
+
+```{r}
+#| label: blame-govt
+mean_govt <- mean(df$acc_blame_govt, na.rm=TRUE)
+print(paste("Average Blame Assigned to Government (0-100):", round(mean_govt, 2)))
+
+# Comparative Plot
+blame_long <- df %>%
+  select(acc_blame_programmer, acc_blame_company, acc_blame_govt) %>%
+  pivot_longer(everything(), names_to = "Entity", values_to = "Blame")
+
+ggplot(blame_long, aes(x = Entity, y = Blame, fill = Entity)) +
+  geom_bar(stat = "summary", fun = "mean") +
+  labs(title = "Average Blame Attribution", y = "Mean Score") +
+  theme_minimal()
+```
+
+## 2.5 Qualitative Risk Analysis
+**Question:** *What specific fears do consumers voice in open-ended responses?*
+
+```{r}
+#| label: risks-text
+library(DT)
+risks <- df %>% select(risks_oe) %>% filter(risks_oe != "")
+datatable(head(risks, 20), options = list(pageLength = 5), caption = "Consumer Risk Voices")
+```

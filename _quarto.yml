@@ -1,0 +1,65 @@
+project:
+  type: book
+  output-dir: docs
+
+editor: visual
+execute:
+  freeze: auto
+  
+book:
+  title: "Autonomous Vehicle Industry Strategy & Analysis"
+  subtitle: "An In-depth Look at Autonomous Vehicle Consumer & Industry Report"
+  author: "Ronak Shah"
+  date: "2025-11-27"
+  bread-crumbs: false
+  repo-url: https://github.com/rhshah/AV_analysis
+  repo-branch: main
+  downloads: [docx, pdf]
+  sidebar:
+    style: "docked"
+    search: true
+    alignment: center
+    pinned: true
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - objectives_1.qmd
+    - objectives_2.qmd
+    - conclusion.qmd
+
+  description: "A comprehensive analysis of the autonomous vehicle industry, focusing on consumer behavior, market trends, and strategic insights for stakeholders."
+  page-footer: 
+    background: light
+    left: |
+      Copyright 2025, Ronak Shah @ Rutgers Buisness School
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>. 
+  page-navigation: true
+
+format:
+  docx: default
+  pdf: default
+  html: 
+    code-link: true
+    theme:
+      light: flatly
+      dark: darkly
+    execute:
+      echo: false
+      warnings: false
+    toc: true
+    toc-title: "AV Industry Strategy & Analysis"
+    highlight-style: pygments
+    embed-resources: false
+    lib_dir: libs
+    standalone: false
+    code-fold: true
+    html-math-method: katex
+    link_target: _self
+    gfm: default
+    tbl-cap-location: bottom
+    fig-cap-location: bottom
+    always_allow_html: true
+    comments:
+      hypothesis: 
+        theme: clean

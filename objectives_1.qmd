@@ -1,0 +1,117 @@
+# Objective 1: Strategy for Scaling
+
+**Goal:** Determine a strategy for scaling autonomous vehicles by analyzing consumer Willingness to Pay (WTP) and confidence drivers.
+
+```{r}
+#| label: load-obj1
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(plotly)
+library(ggpubr)
+library(rstatix)
+
+df <- read.csv("./data/AVsurvey.csv")
+# Re-apply factor levels
+df$conf_safe <- factor(df$conf_safe, levels = c("Not very confident", "Somewhat confident", "Very confident", "Extremely confident"))
+df$conf_right <- factor(df$conf_right, levels = c("Not very confident", "Somewhat confident", "Very confident", "Extremely confident"))
+```
+
+## The Pricing Gap: Human vs. AV
+
+**Question**: Does the market demand a discount for AVs, or will they pay a premium?
+
+```{r}
+#| label: fig-wtp-comp
+#| warning: false
+
+df_long <- df %>%
+  select(participant_id, maxfare_1, maxfare_2) %>%
+  pivot_longer(cols = starts_with("maxfare"), names_to = "Mode", values_to = "WTP") %>%
+  mutate(Mode = ifelse(Mode == "maxfare_1", "Private (Human)", "Private (AV)"))
+
+p <- ggplot(df_long, aes(x = Mode, y = WTP, fill = Mode)) +
+  geom_boxplot() +
+  labs(title = "WTP: Private Human vs. Private AV", y = "Max Fare ($)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+ggplotly(p)
+
+# Paired T-Test
+t.test(df$maxfare_1, df$maxfare_2, paired = TRUE)
+```
+
+**Analysis**: If the mean WTP for AVs is lower, the strategy must initially focus on cost-leadership or subsidization to drive adoption.
+
+## Private vs. Shared Dynamics
+
+**Question:** *How does the WTP degradation compare when moving from Private to Shared?*
+
+```{r}
+#| label: fig-wtp-shared
+#| warning: false
+
+df_shared <- df %>%
+  select(participant_id, maxfare_3, maxfare_4) %>%
+  pivot_longer(cols = starts_with("maxfare"), names_to = "Mode", values_to = "WTP") %>%
+  mutate(Mode = ifelse(Mode == "maxfare_3", "Shared (Human)", "Shared (AV)"))
+
+p2 <- ggplot(df_shared, aes(x = Mode, y = WTP, fill = Mode)) +
+  geom_boxplot() +
+  labs(title = "WTP: Shared Human vs. Shared AV", y = "Max Fare ($)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+ggplotly(p2)
+```
+
+## The Trust Premium (Safety)
+
+**Question:** *Can we charge more if consumers trust the safety technology?*
+
+```{r}
+#| label: fig-conf-safe
+#| warning: false
+
+p3 <- ggplot(df, aes(x = conf_safe, y = maxfare_2, fill = conf_safe)) +
+  geom_boxplot() +
+  labs(title = "WTP for AV by Safety Confidence", x = "Confidence", y = "WTP ($)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+ggplotly(p3)
+
+# ANOVA
+df %>% anova_test(maxfare_2 ~ conf_safe)
+```
+
+*Analysis:* A significant ANOVA suggests that marketing spend on safety demonstration is directly convertible to higher fares.
+
+## The Ethics Premium
+
+**Question:** *Does trust in ethical algorithms drive value as much as physical safety?*
+
+```{r}
+#| label: fig-conf-ethics
+#| warning: false
+
+p4 <- ggplot(df, aes(x = conf_right, y = maxfare_2, fill = conf_right)) +
+  geom_boxplot() +
+  labs(title = "WTP for AV by Ethical Confidence", x = "Ethical Confidence", y = "WTP ($)") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+ggplotly(p4)
+```
+
+## Strategic Synthesis for Scaling
+
+Based on the data above:
+
+1. **Pricing:** If WTP is lower for AVs, enter the market with a penetration pricing strategy.
+
+2. **Marketing:** Prioritize "Safety" messaging over "Ethics" if the ANOVA F-value for safety is higher.
+
+3. **Product Mix:** If the gap between Private AV and Shared AV is small, push Shared AVs to maximize fleet revenue per mile.
