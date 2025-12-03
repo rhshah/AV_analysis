@@ -41,8 +41,9 @@ ggthemr("fresh")
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-align: center
-#| fig-cap: WTP Comparison: Private Human vs. Autonomous Vehicles
+#| fig-align: "center"
+#| fig-cap: "WTP Comparison: Private Human vs. Autonomous Vehicles"
+
 # Prepare Data
 df_long <- df %>%
   select(participant_id, maxfare_1, maxfare_2) %>%
@@ -95,8 +96,8 @@ t.test(df$maxfare_1, df$maxfare_2, paired = TRUE) %>%
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-align: center
-#| fig-cap: WTP Comparison: Shared Human vs. Shared Autonomous Vehicles
+#| fig-align: "center"
+#| fig-cap: "WTP Comparison: Shared Human vs. Shared Autonomous Vehicles"
 
 # Prepare Data
 df_shared <- df %>%
